@@ -22,12 +22,12 @@ def main():
             ss.disliked.add(id)
             ss.rated[id]=1
     games=pd.DataFrame(ss.game_data)
-    games=games[:3000]
+    games=games[:25000]
     st.title("Games Recommender")
     chosen_game=st.selectbox("Select the game you interested in",games["title"])
     @st.cache_data
     def tag_sim_load():
-        with open("pkl_files/smol_tag_sim.pkl","rb") as tag_sim_pkl:
+        with open("pkl_files/25000_tag_sim.pkl","rb") as tag_sim_pkl:
             return pickle.load(tag_sim_pkl)
     tag_sim=tag_sim_load()
     def recommend(game,sim):
