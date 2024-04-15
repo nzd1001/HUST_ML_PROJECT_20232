@@ -2,6 +2,7 @@ import streamlit as st
 from streamlit import session_state as ss
 import pickle 
 import pandas as pd
+st.set_page_config(layout="wide")
 @st.cache_data
 def load_game_data():
     with open("pkl_files/game.pkl","rb") as game_pkl:
@@ -10,7 +11,8 @@ def load_game_data():
 ss.game_data=load_game_data()
 def display_poster(id,col):
     row_index = ss.game_data[ss.game_data['app_id'] ==id].index[0]
-    title = ss.game_data.iloc[row_index]['title']
+    title = ss.game_data.iloc[row_index][
+        'title']
     url=f"https://cdn.akamai.steamstatic.com/steam/apps/{id}/header.jpg?"
     col.write(title)
     col.image(url, width=350)
