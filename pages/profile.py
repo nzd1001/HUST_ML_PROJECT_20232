@@ -4,7 +4,7 @@ from pages.modules.display_poster import display_poster
 def main():
     tab1, tab2 = st.tabs(["Games you liked","Games you disliked"])
     def show_games(id_set):
-        col1, col2,col3= st.columns(4,gap="large")
+        col1, col2,col3= st.columns(3,gap="large")
         i=0
         for id in id_set:
             if i%3==0:
