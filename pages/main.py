@@ -1,6 +1,7 @@
 from streamlit_option_menu import option_menu
 from pages.profile import main as profile_main
 from pages.search import main as search_main
+
 selected=option_menu(
     menu_title=None,
     options=["Profile","Search","Recommendation"],
