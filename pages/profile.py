@@ -1,21 +1,18 @@
 import streamlit as st
 from streamlit import session_state as ss
+from pages.modules.display_poster import display_poster
 def main():
     tab1, tab2 = st.tabs(["Games you liked","Games you disliked"])
-    def display_poster(id,col,callback_func=None):
-        row_index = ss.game_data[ss.game_data['app_id'] ==id].index[0]
-        title = ss.game_data.iloc[row_index]['title']
-        url=f"https://cdn.akamai.steamstatic.com/steam/apps/{id}/header.jpg?"
-        col.write(title)
-        col.image(url, width=350)   
     def show_games(id_set):
-        col1, col2= st.columns(2,gap="large")
+        col1, col2,col3= st.columns(4,gap="large")
         i=0
-        for candidate_id in id_set:
+        for id in id_set:
             if i%3==0:
-                display_poster(candidate_id,col1)
+                display_poster(id,col1,callback_func=None,display_like=False)
+            elif i%3==1:
+                display_poster(id,col2,callback_func=None,display_like=False)
             else:
-                display_poster(candidate_id,col2)
+                display_poster(id,col3,callback_func=None,display_like=False)
             i+=1
     with tab1:
         show_games(ss.liked)
