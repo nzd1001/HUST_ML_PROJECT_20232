@@ -2,6 +2,7 @@ import streamlit as st
 from streamlit import session_state as ss
 import pickle 
 import pandas as pd
+st.set_page_config(layout="wide")
 @st.cache_data
 def load_game_data():
     with open("pkl_files/game.pkl","rb") as game_pkl:
