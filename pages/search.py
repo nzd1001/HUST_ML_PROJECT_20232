@@ -7,7 +7,7 @@ import streamlit as st
 def main():
     games=pd.DataFrame(ss.game_data)
     games=games[:10000]
-    st.title("Games Recommender")
+    
     chosen_game=st.selectbox("Select the game you interested in",games["title"])
     @st.cache_data
     def tag_sim_load():
@@ -25,11 +25,11 @@ def main():
         i=0
         for candidate in recommend(chosen_game,tag_sim):
             if i%3==0:
-                display_poster(id,col1)
+                display_poster(games.iloc[candidate[0]]["app_id"],col1)
             elif i%3==1:
-                display_poster(id,col2)
+                display_poster(games.iloc[candidate[0]]["app_id"],col2)
             else:
-                display_poster(id,col3)
+                display_poster(games.iloc[candidate[0]]["app_id"],col3)
             i+=1
     def rec_callback():
         ss.rec_clicked=True
